@@ -1,10 +1,83 @@
-import React from 'react';
+"use client"
+import { authClient } from '@/lib/auth-client';
+import { Check, Eye, EyeSlash } from '@gravity-ui/icons';
+import { Button, FieldError, Form, Input, InputGroup, Label, TextField } from '@heroui/react';
+import React, { useState } from 'react';
 
 const page = () => {
+
+    const [isVisible, setIsVisible] = useState(false);
+    
+        const onSubmit = async (e) => {
+        e.preventDefault();
+    
+        const formData = new FormData(e.currentTarget);
+        const userData = Object.fromEntries(formData.entries())
+        console.log(userData)
+    
+        const { data, error } = await authClient.signIn.email({
+            email: userData.email,
+            password: userData.password,
+            callbackURL: "/",
+        });
+    
+        console.log(data)
+        
+      };
+
     return (
-        <div>
-            
-        </div>
+        <div className='flex justify-center'>
+        <Form className="flex w-96 flex-col gap-4 shadow-lg rounded-2xl border p-4 mt-5" onSubmit={onSubmit}>
+
+
+      <TextField
+        isRequired
+        name="email"
+        type="email"
+        validate={(value) => {
+          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+            return "Please enter a valid email address";
+          }
+          return null;
+        }}
+      >
+        <Label>Email</Label>
+        <Input name='email' placeholder="Enter email" />
+        <FieldError />
+      </TextField>
+
+      <TextField className="w-full max-w-[280px]" name="password">
+      <Label>Password</Label>
+      <InputGroup>
+        <InputGroup.Input
+          className="w-full max-w-[280px]"
+          type={isVisible ? "text" : "password"}
+          placeholder='Enter password'
+        />
+        <InputGroup.Suffix className="pr-0">
+          <Button
+            isIconOnly
+            aria-label={isVisible ? "Hide password" : "Show password"}
+            size="sm"
+            variant="ghost"
+            onPress={() => setIsVisible(!isVisible)}
+          >
+            {isVisible ? <Eye className="size-4" /> : <EyeSlash className="size-4" />}
+          </Button>
+        </InputGroup.Suffix>
+      </InputGroup>
+    </TextField>
+      <div className="flex gap-2">
+        <Button type="submit">
+          <Check />
+          Submit
+        </Button>
+        <Button type="reset" variant="secondary">
+          Reset
+        </Button>
+      </div>
+    </Form>
+    </div>
     );
 };
 
