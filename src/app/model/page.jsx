@@ -1,7 +1,7 @@
 import React from 'react';
 
 const fetching = async () => {
-    const res = await fetch("http://localhost:5000/models",{
+    const res = await fetch("http://localhost:4000/models",{
         cache: "no-store"
     })
     return res.json()
