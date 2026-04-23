@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import {Check, Eye, EyeSlash} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, InputGroup, Label, TextField} from "@heroui/react";
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 
 const page = () => {
 
     const [isVisible, setIsVisible] = useState(false);
+    const router = useRouter()
 
     const onSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,11 @@ const page = () => {
         name: userData.name,
         email: userData.email,
         password: userData.password,
-        callbackURL: "/",
+        // callbackURL: "/",
+    },{
+        onSuccess: () => {
+            router.push('/')
+        }
     });
 
     if(data){
@@ -34,7 +40,7 @@ const page = () => {
   };
   return (
     <div className='flex justify-center'>
-        <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+        <Form className="flex w-96 flex-col gap-4 shadow-lg rounded-2xl border p-4 mt-5" onSubmit={onSubmit}>
 
 
         <TextField
