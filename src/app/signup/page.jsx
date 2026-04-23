@@ -1,21 +1,40 @@
 "use client";
-import React from 'react';
-import {Check} from "@gravity-ui/icons";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import React, { useState } from 'react';
+import {Check, Eye, EyeSlash} from "@gravity-ui/icons";
+import {Button, Description, FieldError, Form, Input, InputGroup, Label, TextField} from "@heroui/react";
+import { authClient } from '@/lib/auth-client';
 
 
 const page = () => {
-    const onSubmit = (e) => {
+
+    const [isVisible, setIsVisible] = useState(false);
+
+    const onSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries())
     console.log(userData)
 
+    const { data, error } = await authClient.signUp.email({
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+        callbackURL: "/",
+    });
+
+    if(data){
+        alert("Data Successfully")
+    }
+    if(error){
+        alert("Undefined")
+    }
+
     
   };
   return (
-    <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+    <div className='flex justify-center'>
+        <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
 
 
         <TextField
@@ -55,7 +74,7 @@ const page = () => {
         <InputGroup.Input
           className="w-full max-w-[280px]"
           type={isVisible ? "text" : "password"}
-          value={isVisible ? "87$2h.3diua" : "••••••••"}
+          placeholder='Enter password'
         />
         <InputGroup.Suffix className="pr-0">
           <Button
@@ -80,6 +99,7 @@ const page = () => {
         </Button>
       </div>
     </Form>
+    </div>
   );
 };
 
