@@ -18,7 +18,7 @@ const page = () => {
         const { data, error } = await authClient.signIn.email({
             email: userData.email,
             password: userData.password,
-            callbackURL: "/",
+            callbackURL: "/model",
         });
     
         console.log(data)
