@@ -1,4 +1,5 @@
 import Carts from '@/component/Carts';
+import Toastify from '@/component/Toastify';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -37,6 +38,8 @@ const page = async () => {
                     </div>
                 ))
             }
+
+            <Toastify></Toastify>
 
             <Carts></Carts>
 

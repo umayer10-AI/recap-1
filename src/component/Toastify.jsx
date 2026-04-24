@@ -1,4 +1,5 @@
-import { Button } from '@heroui/react';
+"use client"
+import { Button, toast } from '@heroui/react';
 import React from 'react';
 
 const Toastify = () => {
