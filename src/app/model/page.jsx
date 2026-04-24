@@ -1,3 +1,4 @@
+import ModalTask from '@/component/ModalTask';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -28,6 +29,9 @@ const page = async () => {
     return (
         <div>
             <h2 className='text-center text-3xl font-bold my-10'>Model page: {data.length}</h2>
+            <div className='flex justify-center'>
+                <ModalTask></ModalTask>
+            </div>
             {
                 data.map(v => (
                     <div key={v.id}>
