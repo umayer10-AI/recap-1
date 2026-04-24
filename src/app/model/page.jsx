@@ -1,3 +1,4 @@
+import Calender from '@/component/Calender';
 import Carts from '@/component/Carts';
 import Toastify from '@/component/Toastify';
 import { auth } from '@/lib/auth';
@@ -40,6 +41,7 @@ const page = async () => {
             }
 
             <Toastify></Toastify>
+            <Calender></Calender>
 
             <Carts></Carts>
 
