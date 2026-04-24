@@ -1,3 +1,4 @@
+import Carts from '@/component/Carts';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -36,6 +37,9 @@ const page = async () => {
                     </div>
                 ))
             }
+
+            <Carts></Carts>
+
         </div>
     );
 };
