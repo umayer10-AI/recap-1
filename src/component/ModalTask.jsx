@@ -1,4 +1,5 @@
 "use client";
+import { createTask } from "@/lib/action";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, Input, Label, ListBox, Modal, Surface, Select, TextField} from "@heroui/react";
 import React from 'react';
@@ -21,14 +22,14 @@ const ModalTask = () => {
             </Modal.Header>
             <Modal.Body className="p-6">
               <Surface variant="default">
-                <form className="flex flex-col gap-4">
-                  <TextField className="w-full" name="name" type="text">
-                    <Label>Name</Label>
-                    <Input placeholder="Enter your name" />
+                <form action={createTask} className="flex flex-col gap-4">
+                  <TextField className="w-full" name="author" type="text">
+                    <Label>Author</Label>
+                    <Input placeholder="Enter your author" />
                   </TextField>
-                  <TextField className="w-full" name="email" type="email">
-                    <Label>Email</Label>
-                    <Input placeholder="Enter your email" />
+                  <TextField className="w-full" name="category" type="text">
+                    <Label>Category</Label>
+                    <Input placeholder="Enter your category" />
                   </TextField>
 
                   <Select className="w-[256px]" placeholder="Select one">
@@ -60,7 +61,7 @@ const ModalTask = () => {
               <Button slot="close" variant="secondary">
                 Cancel
               </Button>
-              <Button slot="close">Submit</Button>
+              <Button slot={'close'} type="submit">Submit</Button>
             </Modal.Footer>
                 </form>
               </Surface>

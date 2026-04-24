@@ -7,7 +7,7 @@ const page = async () => {
   console.log(data);
 
   return (
-    <div className="max-w-[90%] mx-auto">
+    <div className="w-[90%] mx-auto">
       <h2 className="text-center text-3xl font-bold my-10">
         About page: {data.length}
       </h2>
