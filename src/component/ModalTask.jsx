@@ -1,13 +1,13 @@
 "use client";
 import {Envelope} from "@gravity-ui/icons";
-import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
+import {Button, Input, Label, ListBox, Modal, Surface, Select, TextField} from "@heroui/react";
 import React from 'react';
 
 const ModalTask = () => {
     return (
         <div>
             <Modal>
-      <Button>Open Contact Form</Button>
+      <Button>Task Form</Button>
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md">
@@ -30,18 +30,32 @@ const ModalTask = () => {
                     <Label>Email</Label>
                     <Input placeholder="Enter your email" />
                   </TextField>
-                  <TextField className="w-full" name="phone" type="tel">
-                    <Label>Phone</Label>
-                    <Input placeholder="Enter your phone number" />
-                  </TextField>
-                  <TextField className="w-full" name="company">
-                    <Label>Company</Label>
-                    <Input placeholder="Enter your company name" />
-                  </TextField>
-                  <TextField className="w-full" name="message">
-                    <Label>Message</Label>
-                    <Input placeholder="Enter your message" />
-                  </TextField>
+
+                  <Select className="w-[256px]" placeholder="Select one">
+      <Label>Priority</Label>
+      <Select.Trigger>
+        <Select.Value />
+        <Select.Indicator />
+      </Select.Trigger>
+      <Select.Popover>
+        <ListBox>
+          <ListBox.Item id="pending" textValue="Pending">
+            Pending
+            <ListBox.ItemIndicator />
+          </ListBox.Item>
+          <ListBox.Item id="process" textValue="Process">
+            Process
+            <ListBox.ItemIndicator />
+          </ListBox.Item>
+          <ListBox.Item id="completed" textValue="Completed">
+            Completed
+            <ListBox.ItemIndicator />
+          </ListBox.Item>
+
+        </ListBox>
+      </Select.Popover>
+    </Select>
+                  
             <Modal.Footer>
               <Button slot="close" variant="secondary">
                 Cancel
